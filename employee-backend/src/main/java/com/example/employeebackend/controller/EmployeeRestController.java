@@ -29,8 +29,8 @@ public class EmployeeRestController {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/find/{employeeId}")
-    public ResponseEntity<GenericEmployeeResponse> getEmployeeById(@PathVariable(value = "employeeId") Long employeeId) throws ResourceNotFoundException {
+    @GetMapping("/find/{id}")
+    public ResponseEntity<GenericEmployeeResponse> getEmployeeById(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
         return ResponseEntity.ok(employeeService.getEmployeeById(employeeId));
     }
 
@@ -45,8 +45,8 @@ public class EmployeeRestController {
         return ResponseEntity.ok(employeeService.updateEmployee(employeeDetails));
     }
 
-    @DeleteMapping("/delete/{employeeId}")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "employeeId") Long employeeId) throws ResourceNotFoundException {
+    @DeleteMapping("/delete/{id}")
+    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
         return employeeService.deleteEmployee(employeeId);
     }
 

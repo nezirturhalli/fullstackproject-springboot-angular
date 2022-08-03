@@ -10,14 +10,19 @@ import { EmployeeService } from './employee.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   public employees: Employee[];
   public editEmployee: Employee;
   public deleteEmployee: Employee;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService){}
+
   ngOnInit() {
     this.getEmployees();
   }
+
   public getEmployees(): void {
     this.employeeService.getEmployees().subscribe(
       (response: Employee[]) => {
@@ -73,12 +78,10 @@ export class AppComponent implements OnInit {
     console.log(key);
     const results: Employee[] = [];
     for (const employee of this.employees) {
-      if (
-        employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        employee.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      ) {
+      if (employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || employee.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
         results.push(employee);
       }
     }
@@ -108,4 +111,7 @@ export class AppComponent implements OnInit {
     container.appendChild(button);
     button.click();
   }
+
+
+
 }
