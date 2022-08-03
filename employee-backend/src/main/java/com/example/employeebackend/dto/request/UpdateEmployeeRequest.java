@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateEmployeeRequest {
+    private Long employeeId;
     private String name;
     private String email;
     private String jobTitle;

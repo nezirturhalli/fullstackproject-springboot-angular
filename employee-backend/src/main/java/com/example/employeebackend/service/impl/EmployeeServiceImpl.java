@@ -48,14 +48,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             var createEmployee = employeeRepository.save(modelMapper.map(employee, Employee.class));
             return modelMapper.map(createEmployee, GenericEmployeeResponse.class);
         } catch (Exception e) {
-            throw new Error(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
     @Override
-    public GenericEmployeeResponse updateEmployee(Long employeeId, UpdateEmployeeRequest request) throws ResourceNotFoundException {
-        var updateEmployee = employeeRepository.findById(employeeId).orElseThrow(
-                () -> getResourceNotFoundException(employeeId));
+    public GenericEmployeeResponse updateEmployee(UpdateEmployeeRequest request) throws ResourceNotFoundException {
+        var updateEmployee = employeeRepository.findById(request.getEmployeeId()).orElseThrow(
+                () -> getResourceNotFoundException(request.getEmployeeId()));
         modelMapper.map(request, updateEmployee);
         return modelMapper.map(employeeRepository.saveAndFlush(updateEmployee), GenericEmployeeResponse.class);
     }

@@ -17,35 +17,35 @@ import java.util.Map;
 
 @RestController
 @RequestScope
-@RequestMapping("/api/v1/employees")
+@RequestMapping("employee")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 public class EmployeeRestController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<GenericEmployeeResponse> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/{employeeId}")
+    @GetMapping("/find/{employeeId}")
     public ResponseEntity<GenericEmployeeResponse> getEmployeeById(@PathVariable(value = "employeeId") Long employeeId) throws ResourceNotFoundException {
         return ResponseEntity.ok(employeeService.getEmployeeById(employeeId));
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public GenericEmployeeResponse createEmployee(@Valid @RequestBody NewEmployeeRequest employee) {
         return employeeService.createNewEmployee(employee);
     }
 
-    @PutMapping("/{employeeId}")
-    public ResponseEntity<GenericEmployeeResponse> updateEmployee(@PathVariable(value = "employeeId") Long employeeId,
-                                                   @Valid @RequestBody UpdateEmployeeRequest employeeDetails) throws ResourceNotFoundException {
-        return ResponseEntity.ok(employeeService.updateEmployee(employeeId, employeeDetails));
+    @PutMapping("/update")
+    public ResponseEntity<GenericEmployeeResponse> updateEmployee(
+            @Valid @RequestBody UpdateEmployeeRequest employeeDetails) throws ResourceNotFoundException {
+        return ResponseEntity.ok(employeeService.updateEmployee(employeeDetails));
     }
 
-    @DeleteMapping("/{employeeId}")
+    @DeleteMapping("/delete/{employeeId}")
     public Map<String, Boolean> deleteEmployee(@PathVariable(value = "employeeId") Long employeeId) throws ResourceNotFoundException {
         return employeeService.deleteEmployee(employeeId);
     }

@@ -15,7 +15,7 @@ public interface EmployeeService {
 
     GenericEmployeeResponse createNewEmployee(NewEmployeeRequest employee);
 
-    GenericEmployeeResponse updateEmployee(Long employeeId, UpdateEmployeeRequest employeeDetails) throws ResourceNotFoundException;
+    GenericEmployeeResponse updateEmployee(UpdateEmployeeRequest employeeDetails) throws ResourceNotFoundException;
 
     Map<String, Boolean> deleteEmployee(Long employeeId) throws ResourceNotFoundException;
 
