@@ -26,7 +26,7 @@ public class Employee {
     private String jobTitle;
     private String phone;
     private String imageUrl;
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private String employeeCode;
 
     @Override
